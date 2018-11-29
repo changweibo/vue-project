@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+    user-scalable=no,initial-scale=1.0,
+    maximum-scale=1.0,minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <!--
+        结构  样式  逻辑  数据  模板引擎 
+    -->
+    <div id="root">
+        <input type="text" v-model="one">
+        <input type="text" v-model="two">
+        {{sum}}
+        {{jian}}
+    </div>
+    <script>
+        new Vue({
+            el:"#root",
+            data:{
+                one:0,
+                two:0,
+                sum:0,
+                jian:0
+            },
+            /*
+            methods: {
+                add() {
+                    return this.one*1+this.two*1
+                },
+                jian(){
+                    return this.one*1-this.two*1
+                }
+            },
+            computed: {
+                add() {
+                    return this.one*1+this.two*1 
+                },
+                jian(){
+                    return this.one*1-this.two*1
+                }
+            },*/
+            watch: {
+                one(newValue, oldValue) {
+                  console.log('newValue')  
+                  console.log('oldValue')  
+                  this.sum=newValue*1+this.two*1;
+                  this.jian=newValue-this.two;
+                },
+                two(newValue,oldValue){
+                  console.log('newValue')  
+                  console.log('oldValue') 
+                  this.sum=this.one*1+newValue*1;
+                  this.jian=this.one-newValue ;
+                }
+            },
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+    user-scalable=no,initial-scale=1.0,
+    maximum-scale=1.0,minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="root" style="width:300px;margin: auto">
+        <todo :text="text"></todo>
+    </div>
+    <script>
+        Vue.directive('focus',{
+            bind:function(a){
+                a.focus()
+            }
+        })
+        Vue.component("todo",{
+            props:{
+                "text":[Number,String]
+            },
+            template:`
+            <div>
+            <input type="text" v-model="val" @keyup.13="up" :placeholder="text" v-focus>
+                <ul>
+                    <li v-for="item in arr">{{item}}</li>
+                </ul>    
+            </div>
+            `,
+            data(){
+               return {
+                   val:"",
+                   arr:[]
+               } 
+            },
+            mounted(){
+                document.querySelector("input").focus();
+            },
+            methods: {
+                up() {
+                    this.arr.push(this.val);
+                    this.val=""
+                },
+            },
+        })
+        /*
+        单向数据流
+        */
+        new Vue({
+            el:"#root",
+            data:{
+                text:"这是要输入的内容"
+            }
+        })
+    </script>
+</body>
+</html>
