@@ -35,6 +35,7 @@ body,ul,li,p{
     height: 25px;
     line-height: 25px;
     border-bottom: 1px solid #888;
+    margin-top: 5px;
 }
 .list li .opt{
     float: left;
@@ -50,4 +51,10 @@ body,ul,li,p{
 }
 .list li .del{
     float: right;
+}
+.check{
+    color: red;
+}
+.red{
+    background-color: red;
 }
